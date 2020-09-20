@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const addproduct = require('./routers/post-data');
+const getproduct = require('./routers/get-data');
 
 // Setting up enviromental variables 
 dotenv.config();
@@ -42,6 +43,12 @@ app.get('/home', (req, res) => {
 app.post('/addproduct', (req, res) => {
     addproduct.addPost(req, res, db);
 })
-app.listen(3001, () => {
+
+// getting all data products
+app.get('/allproduct', (req, res) => {
+    getproduct.showdata(req, res, db);
+})
+
+app.listen(3001, '192.168.1.69', () => {
     console.log('app is running..');
 });
